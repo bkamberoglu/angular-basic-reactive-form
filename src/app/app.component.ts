@@ -1,6 +1,5 @@
 import { Component, OnInit, VERSION } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { OptionType } from "./model/option-radio";
 
 @Component({
   selector: "my-app",
@@ -11,11 +10,6 @@ export class AppComponent implements OnInit {
   name = "Angular " + VERSION.major;
 
   myForm: FormGroup;
-
-  isChecked: boolean = false;
-
-
-  selectedRadio: string;
 
   radioOptions: Array<any> = [
     { label: "Option 1", value: "1" },
@@ -37,14 +31,9 @@ export class AppComponent implements OnInit {
   };
 
   onSubmit() {
-    console.log(this.myForm);
-    console.log("input: ", this.myForm.get("input").value);
-    console.log("textArea: ", this.myForm.get("textArea").value);
-    console.log("checkbox: ", this.myForm.get("checkbox").value);
-    console.log("select: ", this.myForm.get("select").value);
-    console.log("radio: ", this.myForm.get("radio").value);
-
-    alert(this.myForm);
+    if (this.myForm.valid) {
+     alert("SUCCESS!! \n\n" + JSON.stringify(this.myForm.value));
+    }
   }
 
   initForm() {
