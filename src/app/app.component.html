@@ -1,0 +1,90 @@
+<form id="myForm" [formGroup]="myForm">
+  <div>
+    <h2>
+      {{name}}
+    </h2>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label class="mat-label">
+      Name
+    </mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="input"
+      id="input"
+      placeholder="Input placeholder"
+      [required]="true"
+    />
+    <mat-error *ngIf="hasError('input', 'required')">
+      Input is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label class="mat-label">
+      Textarea
+    </mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="textArea"
+      id="textArea"
+      placeholder="Textarea placeholder"
+      [required]="true"
+    />
+    <mat-error *ngIf="hasError('textArea', 'required')">
+      Textarea is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-card>
+    <mat-checkbox formControlName="checkbox">Checkbox</mat-checkbox>
+  </mat-card>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Select</mat-label>
+    <mat-select formControlName="select" [required]="true">
+      <mat-option
+        *ngFor="let selectOption of selectOptions"
+        [value]="selectOption.label"
+      >
+        {{ selectOption.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-card>
+    <p><label id="example-radio-group-label">Radio *</label></p>
+
+    <mat-radio-group
+      aria-label="Select an option"
+      formControlName="radio"
+      [required]="true"
+    >
+      <mat-radio-button
+        *ngFor="let radioOption of radioOptions"
+        [value]="radioOption.label"
+      >
+        {{radioOption.label}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-card>
+
+  <mat-card-actions>
+    <button
+      color="primary"
+      mat-raised-button
+      [disabled]="
+          !myForm.valid ||
+          !myForm.dirty
+        "
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+
+    <button type="reset" color="warn" mat-raised-button>
+      Reset
+    </button>
+  </mat-card-actions>
+</form>
